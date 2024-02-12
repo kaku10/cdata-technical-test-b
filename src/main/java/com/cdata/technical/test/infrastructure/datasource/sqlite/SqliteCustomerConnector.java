@@ -45,6 +45,18 @@ public class SqliteCustomerConnector {
         return null;
     }
 
+    public int getCount(String tableName) throws SQLException {
+        Statement stat = sqliteConn.createStatement();
+        boolean ret = stat.execute("SELECT COUNT(更新日時) AS cnt FROM " + tableName + " GROUP BY AppId");
+        if (ret) {
+            ResultSet rs = stat.getResultSet();
+            if (rs.next()) {
+                return rs.getInt("cnt");
+            }
+        }
+        return 0;
+    }
+
     public void insertCustomers(String tableName, List<HashMap<String, Object>> customers) throws SQLException {
         Statement stat = sqliteConn.createStatement();
         for (HashMap<String, Object> customer : customers) {

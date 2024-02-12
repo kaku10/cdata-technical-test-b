@@ -44,7 +44,7 @@ public class CustomerRepository {
     /**
      * @return processed rows count
      */
-    public Integer replicateCustomer() throws SQLException {
+    public int replicateCustomer() throws SQLException {
         if (this.sqliteCustomerConnector.isTableNotExists(tableName)) {
             List<HashMap<String, Object>> columns = this.kintoneCustomerConnector.getColumns();
             this.sqliteCustomerConnector.createTableIfNotExists(tableName, columns);
@@ -52,8 +52,9 @@ public class CustomerRepository {
         Timestamp lastUpdatedAt = this.sqliteCustomerConnector.getLastUpdatedTime(tableName);
         if (lastUpdatedAt == null) {
             this.sqliteCustomerConnector.insertCustomers(tableName, this.kintoneCustomerConnector.getCustomers());
-        } else {
-            this.sqliteCustomerConnector.upsertCustomers(tableName, this.kintoneCustomerConnector.getCustomersFromUpdatedAt(lastUpdatedAt));
+            return this.sqliteCustomerConnector.getCount(tableName);
         }
+        this.sqliteCustomerConnector.upsertCustomers(tableName, this.kintoneCustomerConnector.getCustomersFromUpdatedAt(lastUpdatedAt));
+        return 0;
     }
 }

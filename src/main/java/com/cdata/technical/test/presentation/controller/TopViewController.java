@@ -51,8 +51,8 @@ public class TopViewController implements Initializable {
     @FXML
     protected void onReplicateButtonClick() throws SQLException {
         try {
-            repository.replicateCustomer();
-            label.setText("Replication completed successfully!");
+            int processedCount = repository.replicateCustomer();
+            label.setText("Replication completed successfully! Processed " + processedCount + " rows.");
         } catch (Exception e) {
             label.setText("Replication failed: " + e.getMessage());
         }
