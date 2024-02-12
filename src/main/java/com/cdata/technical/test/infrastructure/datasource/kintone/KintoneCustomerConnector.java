@@ -18,7 +18,7 @@ public class KintoneCustomerConnector {
     }
 
     public List<HashMap<String, Object>> getCustomersFromUpdatedAt(Timestamp updatedAt) throws SQLException {
-        return getRecords("SELECT * FROM \"" + TABLE_NAME + "\" WHERE \"更新日時\" >= '" + updatedAt.toString() +"'");
+        return getRecords("SELECT * FROM \"" + TABLE_NAME + "\" WHERE \"更新日時\" > '" + updatedAt.toString() +"'");
     }
 
     public List<HashMap<String, Object>> getColumns() throws SQLException {

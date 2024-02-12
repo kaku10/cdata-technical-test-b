@@ -54,7 +54,8 @@ public class CustomerRepository {
             this.sqliteCustomerConnector.insertCustomers(tableName, this.kintoneCustomerConnector.getCustomers());
             return this.sqliteCustomerConnector.getCount(tableName);
         }
-        this.sqliteCustomerConnector.upsertCustomers(tableName, this.kintoneCustomerConnector.getCustomersFromUpdatedAt(lastUpdatedAt));
-        return 0;
+        List<HashMap<String, Object>> upsertRecords = this.kintoneCustomerConnector.getCustomersFromUpdatedAt(lastUpdatedAt);
+        this.sqliteCustomerConnector.upsertCustomers(tableName, upsertRecords);
+        return upsertRecords.size();
     }
 }
