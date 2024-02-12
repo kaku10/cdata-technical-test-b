@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class CustomerConnector {
+public class SqliteCustomerConnector {
     private final Connection sqliteConn;
 
-    public CustomerConnector(String sqliteJdbcUrl) throws SQLException {
+    public SqliteCustomerConnector(String sqliteJdbcUrl) throws SQLException {
         this.sqliteConn = DriverManager.getConnection(sqliteJdbcUrl);
     }
 }

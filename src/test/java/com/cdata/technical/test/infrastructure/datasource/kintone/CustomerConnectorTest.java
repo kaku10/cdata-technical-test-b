@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CustomerConnectorTest {
 
     @Test
     void getCustomers() throws SQLException {
-        CustomerConnector customerConnector = new CustomerConnector(
+        KintoneCustomerConnector customerConnector = new KintoneCustomerConnector(
                 System.getenv("KINTONE_JDBC_URL")
         );
         customerConnector.getCustomers();

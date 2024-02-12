@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomerConnector {
+public class KintoneCustomerConnector {
     private final Connection kintoneConn;
 
-    public CustomerConnector(String kintoneJdbcUrl) throws SQLException {
+    public KintoneCustomerConnector(String kintoneJdbcUrl) throws SQLException {
         this.kintoneConn = DriverManager.getConnection(kintoneJdbcUrl);
     }
 
