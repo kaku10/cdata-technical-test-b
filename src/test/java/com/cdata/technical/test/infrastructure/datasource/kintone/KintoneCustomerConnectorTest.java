@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-class CustomerConnectorTest {
+class KintoneCustomerConnectorTest {
 
     @Test
     void getCustomers() throws SQLException {
