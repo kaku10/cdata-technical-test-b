@@ -22,7 +22,16 @@ public class KintoneCustomerConnector {
     }
 
     public List<HashMap<String, Object>> getColumns() throws SQLException {
-        return getRecords("SELECT ColumnName, DataTypeName FROM sys_tablecolumns WHERE TableName = '" + TABLE_NAME + "'");
+        return getRecords("SELECT ColumnName, DataTypeName, IsKey FROM sys_tablecolumns WHERE TableName = '" + TABLE_NAME + "'");
+    }
+
+    public List<String> getHeader() throws SQLException {
+        List<HashMap<String, Object>> columns = getColumns();
+        ArrayList<String> header = new ArrayList<>();
+        for (HashMap<String, Object> column : columns) {
+            header.add((String) column.get("ColumnName"));
+        }
+        return header;
     }
 
     private List<HashMap<String, Object>> getRecords(String sql) throws SQLException {

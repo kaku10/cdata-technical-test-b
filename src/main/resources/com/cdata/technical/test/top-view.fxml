@@ -4,26 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cdata.technical.test.presentation.controller.TopViewController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.cdata.technical.test.presentation.controller.TopViewController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <HBox fx:id="replicateButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onReplicateButtonClick">
-        <TableView prefHeight="200.0" prefWidth="200.0">
-            <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-            </columns>
+    <HBox fx:id="replicateButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+          onMouseClicked="#onReplicateButtonClick">
+        <TableView fx:id="sqliteCustomersTable" prefHeight="500.0" prefWidth="500.0">
         </TableView>
-
-        <TableView prefHeight="200.0" prefWidth="200.0">
-            <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-            </columns>
+        <TableView fx:id="kintoneCustomersTable" prefHeight="500.0" prefWidth="500.0">
         </TableView>
     </HBox>
-    <Button onMouseClicked="#onReplicateButtonClick" text="Replicate" />
-   <Label fx:id="label" text="Label" />
+    <Button onMouseClicked="#onReplicateButtonClick" text="Replicate"/>
+    <Label fx:id="label"/>
 </VBox>

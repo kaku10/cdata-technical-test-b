@@ -21,7 +21,30 @@ public class CustomerRepository {
         this.kintoneCustomerConnector = kintoneCustomerConnector;
     }
 
-    public void replicateCustomer() throws SQLException {
+    public List<HashMap<String, Object>> getCustomersFromSqlite() throws SQLException {
+        return this.sqliteCustomerConnector.getCustomers(tableName);
+    }
+
+    public List<String> getCustomerHeaderFromSqlite() throws SQLException {
+        return this.sqliteCustomerConnector.getHeader(tableName);
+    }
+
+    public List<HashMap<String, Object>> getCustomersFromKintone() throws SQLException {
+        return this.kintoneCustomerConnector.getCustomers();
+    }
+
+    public List<String> getCustomerHeaderFromKintone() throws SQLException {
+        return this.kintoneCustomerConnector.getHeader();
+    }
+
+    public Boolean isTableExists() throws SQLException {
+        return !this.sqliteCustomerConnector.isTableNotExists(tableName);
+    }
+
+    /**
+     * @return processed rows count
+     */
+    public Integer replicateCustomer() throws SQLException {
         if (this.sqliteCustomerConnector.isTableNotExists(tableName)) {
             List<HashMap<String, Object>> columns = this.kintoneCustomerConnector.getColumns();
             this.sqliteCustomerConnector.createTableIfNotExists(tableName, columns);
