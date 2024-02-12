@@ -17,6 +17,10 @@ public class KintoneCustomerConnector {
         return getRecords("SELECT * FROM \"" + TABLE_NAME + "\"");
     }
 
+    public List<HashMap<String, Object>> getCustomersFromUpdatedAt(Timestamp updatedAt) throws SQLException {
+        return getRecords("SELECT * FROM \"" + TABLE_NAME + "\" WHERE \"更新日時\" >= '" + updatedAt.toString() +"'");
+    }
+
     public List<HashMap<String, Object>> getColumns() throws SQLException {
         return getRecords("SELECT ColumnName, DataTypeName FROM sys_tablecolumns WHERE TableName = '" + TABLE_NAME + "'");
     }
