@@ -18,7 +18,7 @@ public class KintoneCustomerConnector {
     }
 
     public List<HashMap<String, Object>> getColumns() throws SQLException {
-        return getRecords("SELECT * FROM sys_tablecolumns WHERE TableName = '" + TABLE_NAME + "'");
+        return getRecords("SELECT ColumnName, DataTypeName FROM sys_tablecolumns WHERE TableName = '" + TABLE_NAME + "'");
     }
 
     private List<HashMap<String, Object>> getRecords(String sql) throws SQLException {
@@ -28,12 +28,11 @@ public class KintoneCustomerConnector {
             ArrayList<HashMap<String, Object>> records = new ArrayList<>();
             ResultSet rs = stat.getResultSet();
             while (rs.next()) {
+                HashMap<String, Object> record = new HashMap<>();
                 for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    int columnIndex = i;
-                    records.add(new HashMap<>() {{
-                        put(rs.getMetaData().getColumnLabel(columnIndex), rs.getObject(columnIndex));
-                    }});
+                    record.put(rs.getMetaData().getColumnLabel(i), rs.getObject(i));
                 }
+                records.add(record);
             }
             return records;
         }
