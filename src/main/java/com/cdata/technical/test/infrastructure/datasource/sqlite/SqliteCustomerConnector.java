@@ -13,14 +13,15 @@ public class SqliteCustomerConnector {
     }
 
     public void createTableIfNotExists(String tableName, List<HashMap<String, Object>> columnsList) throws SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (";
+        StringBuilder sql = new StringBuilder("CREATE TABLE IF NOT EXISTS " + tableName + " (");
         for (HashMap<String, Object> columns : columnsList) {
-            sql += "\"" + columns.get("ColumnName") + "\""
-                    + " " + columns.get("DataTypeName")
-                    + " " + ((Boolean) columns.get("IsKey") ? "PRIMARY KEY" : "") + ",";
+            sql.append("\"").append(columns.get("ColumnName")).append("\"")
+                    .append(" ").append(columns.get("DataTypeName")).append(" ")
+                    .append((Boolean) columns.get("IsKey") ? "PRIMARY KEY" : "")
+                    .append(",");
         }
-        sql = sql.substring(0, sql.length() - 1) + ")";
-        sqliteConn.createStatement().execute(sql);
+        sql = new StringBuilder(sql.substring(0, sql.length() - 1) + ")");
+        sqliteConn.createStatement().execute(sql.toString());
     }
 
     public boolean isTableNotExists(String tableName) throws SQLException {
