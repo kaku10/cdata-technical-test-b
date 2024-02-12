@@ -13,4 +13,12 @@ class KintoneCustomerConnectorTest {
         );
         customerConnector.getCustomers();
     }
+
+    @Test
+    void getColumns() throws SQLException {
+        KintoneCustomerConnector customerConnector = new KintoneCustomerConnector(
+                System.getenv("KINTONE_JDBC_URL")
+        );
+        customerConnector.getColumns();
+    }
 }
