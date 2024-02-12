@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CustomerConnector {
-    private final Connection sqliteConn;
     private final Connection kintoneConn;
 
-    public CustomerConnector(String sqliteJdbcUrl, String kintoneJdbcUrl) throws SQLException {
-        this.sqliteConn = DriverManager.getConnection(sqliteJdbcUrl);
+    public CustomerConnector(String kintoneJdbcUrl) throws SQLException {
         this.kintoneConn = DriverManager.getConnection(kintoneJdbcUrl);
     }
 

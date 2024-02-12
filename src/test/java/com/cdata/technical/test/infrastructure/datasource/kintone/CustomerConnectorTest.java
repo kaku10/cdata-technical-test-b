@@ -11,7 +11,6 @@ class CustomerConnectorTest {
     @Test
     void getCustomers() throws SQLException {
         CustomerConnector customerConnector = new CustomerConnector(
-                System.getenv("SQLITE_JDBC_URL"),
                 System.getenv("KINTONE_JDBC_URL")
         );
         customerConnector.getCustomers();
