@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class KintoneCustomerConnector {
+    private static final String TABLE_NAME = "顧客管理（営業支援パック）";
     private final Connection kintoneConn;
 
     public KintoneCustomerConnector(String kintoneJdbcUrl) throws SQLException {
@@ -13,11 +14,11 @@ public class KintoneCustomerConnector {
     }
 
     public List<HashMap<String, Object>> getCustomers() throws SQLException {
-        return getRecords("SELECT * FROM \"顧客管理（営業支援パック）\"");
+        return getRecords("SELECT * FROM \"" + TABLE_NAME + "\"");
     }
 
     public List<HashMap<String, Object>> getColumns() throws SQLException {
-        return getRecords("SELECT * FROM sys_tablecolumns WHERE TableName = '顧客管理（営業支援パック）'");
+        return getRecords("SELECT * FROM sys_tablecolumns WHERE TableName = '" + TABLE_NAME + "'");
     }
 
     private List<HashMap<String, Object>> getRecords(String sql) throws SQLException {
